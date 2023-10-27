@@ -1,0 +1,19 @@
+@import "variables";
+
+html {
+  font-size: var(--main-size);
+}
+
+body {
+  background-color: var(--bg-interface);
+  font-family: var(--font-family);
+  font-weight: 400;
+}
+
+main {
+  margin: 0 var(--container);
+}
+
+button {
+  cursor: pointer;
+}

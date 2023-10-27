@@ -1,0 +1,83 @@
+@mixin disableScrollbar {
+  .ingredients__block__burger {
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    &::-webkit-scrollbar-track {
+      display: none;
+    }
+    &::-webkit-scrollbar-thumb {
+      display: none;
+    }
+  }
+}
+
+.ingredients {
+  width: 100%;
+  &__container {
+    transition: .3s ease border;
+    border: .2rem dashed gray;
+    height: 71rem;
+
+    @include disableScrollbar;
+  }
+
+  &__container_disable {
+    height: 71rem;
+  }
+
+  &__container_active {
+    transition: .3s ease border;
+    border: .2rem dashed #4C4CFF;
+    height: 71rem;
+
+    @include disableScrollbar;
+  }
+
+  &__block__burger {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1.6rem;
+    height: 50rem;
+    padding: 1.6rem 0;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+      width: .8rem;
+    }
+    &::-webkit-scrollbar-track {
+      background-color: rgba(133, 133, 173, .2);
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: rgba(133, 133, 173, 1);
+      height: 29.5rem;
+    }
+  }
+
+  &__bottom {
+    margin-top: 4rem;
+    display: flex;
+    justify-content: flex-end;
+    color: white;
+    column-gap: 4rem;
+  }
+
+  &__cost__block {
+    display: flex;
+    align-items: center;
+    column-gap: .8rem;
+  }
+
+  &__cost__image {
+    width: 2.4rem;
+    height: 2.4rem;
+  }
+
+  &__price {
+    font-family: "Iceland", sans-serif;
+    font-size: 4.8rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.2;
+  }
+}
