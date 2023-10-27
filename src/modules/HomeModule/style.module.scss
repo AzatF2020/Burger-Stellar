@@ -1,0 +1,28 @@
+.home {
+  &__container {
+    padding: 0 var(--indent);
+  }
+
+  &__upper {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin: 4rem 0 2rem;
+  }
+
+  &__title {
+    font-size: 3.6rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 4rem;
+    color: white;
+  }
+
+  &__components {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 4rem;
+  }
+
+}

@@ -1,7 +1,9 @@
-export const Home = ()=> {
+import {HomeModule} from "../../modules";
+
+export const Home = () => {
   return (
     <>
-      h2
+      <HomeModule/>
     </>
   );
 };

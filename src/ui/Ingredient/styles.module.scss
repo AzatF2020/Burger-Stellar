@@ -1,0 +1,51 @@
+.ingredient {
+  color: white;
+  position: relative;
+  &__counter {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+    row-gap: .8rem;
+  }
+
+  &__image {
+    width: 24rem;
+    height: 12rem;
+    object-fit: cover;
+  }
+
+  &__cost__info {
+    display: flex;
+    align-items: center;
+    column-gap: .8rem;
+  }
+
+  &__cost {
+    font-family: "Iceland", sans-serif;
+    font-size: 2.8rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.2;
+  }
+
+  &__cost__image {
+    width: 2.4rem;
+    height: 2.4rem;
+    object-fit: cover;
+  }
+
+  &__name {
+    font-size: 1.6rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.2;
+    text-align: center;
+  }
+}

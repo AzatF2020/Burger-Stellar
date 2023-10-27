@@ -1,0 +1,72 @@
+.header {
+  width: 100%;
+  margin-top: 2rem;
+  &__container {
+    height: 8.8rem;
+    display: grid;
+    grid-template-columns: repeat(14, minmax(0, 1fr));
+    padding: 0 var(--indent);
+    margin: 0 var(--container);
+    background-color: #1C1C21;
+    align-items: center;
+    justify-items: center;
+  }
+
+  &__navigation {
+    display: flex;
+    align-items: center;
+    column-gap: 3rem;
+
+    grid-column: 1 / 5;
+  }
+
+  &__logo {
+    grid-column: 6 / 10;
+  }
+
+  &__logo__icon {
+    width: 30rem;
+    height: 4rem;
+    object-fit: cover;
+    transition: .2s ease opacity;
+
+    &:hover {
+      opacity: .6;
+    }
+  }
+
+  &__profile {
+    grid-column: 12 / 14;
+  }
+
+  &__icon {
+    width: 2.4rem;
+    height: 2.4rem;
+  }
+
+  &__link {
+    display: flex;
+    align-items: center;
+
+    font-size: 1.6rem;
+    font-style: normal;
+    font-weight: 400;
+    color: white;
+    text-decoration: none;
+    column-gap: .8rem;
+
+    opacity: .4;
+  }
+
+  &__link__active {
+    display: flex;
+    align-items: center;
+
+    font-size: 1.6rem;
+    font-style: normal;
+    font-weight: 400;
+    color: white;
+    text-decoration: none;
+    column-gap: .8rem;
+  }
+}

@@ -1,0 +1,51 @@
+.tab {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  &__button {
+    background-color: transparent;
+    font-size: 1.6rem;
+    font-style: normal;
+    font-weight: 400;
+    color: rgba(133, 133, 173, 1);
+    border: none;
+    padding: 1.6rem 0;
+
+    position: relative;
+    transition: color .3s ease;
+
+    &::before {
+      transition: border .3s ease;
+      content: "";
+      display: block;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      border: .1rem solid rgba(133, 133, 173, .4);
+    }
+  }
+
+  &__button_active {
+    background-color: transparent;
+    font-size: 1.6rem;
+    font-style: normal;
+    font-weight: 400;
+    color: white;
+    border: none;
+    padding: 1.6rem 0;
+
+    position: relative;
+    transition: color .3s ease;
+
+    &::before {
+      transition: border .3s ease;
+      content: "";
+      display: block;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      border: .125rem solid #4C4CFF;
+    }
+  }
+}
