@@ -29,7 +29,7 @@ const BurgerIngredients = () => {
 
   // #NOTE: Just for styling. You can skip function.
   const setContainerClassOnDrop = () => {
-    return (!ingredientsOrder.length && (!buns.top || !buns.bottom)) ?
+    return isOver ?  styles.ingredients__container_active : (!ingredientsOrder.length && (!buns.top || !buns.bottom)) ?
       (isOver ? styles.ingredients__container_active : styles.ingredients__container)
       : styles.ingredients__container_disable
   }
@@ -68,7 +68,7 @@ const BurgerIngredients = () => {
           <h5 className={styles.ingredients__price}>{price}</h5>
           <img src={CostIcon} alt="cost icon" className={styles.ingredients__cost__image}/>
         </span>
-        <Button word={"Оформить заказ"} size={"large"}/>
+        <Button word={"Оформить заказ"} size={"large"} {...(!ingredientsOrder.length && {disabled: true})}/>
       </div>
     </div>
   );

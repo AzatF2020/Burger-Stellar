@@ -14,7 +14,7 @@ interface IIngredient {
 
 const Ingredient: FC<IIngredient> = ({item, counter, image, cost, name}) => {
   const {isDragging, drag} = useCustomDrag("ingredient", item)
-  const opacity = isDragging ? 0.4 : 1
+  const opacity = isDragging ? 0.6 : 1
 
   return (
     <div className={styles.ingredient} style={{ opacity }} ref={drag} data-testid={`ingredient`}>

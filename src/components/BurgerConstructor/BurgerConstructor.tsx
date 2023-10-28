@@ -1,14 +1,13 @@
 import styles from "./style.module.scss"
-import useSWR from 'swr'
 import Tab from "../Tab/Tab.tsx";
 import Ingredient from "../../ui/Ingredient/Ingredient.tsx";
 import {useCallback, useEffect, useState, memo, useRef} from "react"
-import {url} from "../../helpers/constants/constants.ts";
-import {fetcher} from "../../helpers/fetchers/fetcher.ts";
-import {TIngredient, TIngredientData} from "../../services/types/data.ts";
+import {TIngredientData} from "../../services/types/data.ts";
+import {useAppSelector} from "../../services/hooks.ts";
+import {countIngredients} from "../../helpers/helpers/countIngredients.ts";
 
 const BurgerConstructor = () => {
-  const {data} = useSWR<TIngredient>(`${url}/ingredients`, fetcher)
+  const {ingredientsFetch: data, ingredientsOrder} = useAppSelector((state) => state.ingredientSlice)
 
   const [buns, setBuns] = useState<TIngredientData[] | []>([])
   const [main, setMain] = useState<TIngredientData[] | []>([])
@@ -38,6 +37,7 @@ const BurgerConstructor = () => {
             {buns?.map((ingredient: TIngredientData) => (
               <Ingredient
                 item={ingredient}
+                counter={countIngredients(ingredient, ingredientsOrder)}
                 key={ingredient._id}
                 name={ingredient?.name}
                 cost={ingredient?.price}

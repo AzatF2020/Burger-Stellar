@@ -6,8 +6,9 @@ import { v4 as uuidv4 } from "uuid";
 
 type TInitialState = {
   buns: TBunsState;
-  ingredientsFetch: TIngredientData[] | [];
+  ingredientsFetch: TIngredient | null;
   ingredientsOrder: TIngredientData[] | [];
+  ingredientsOrderWithBuns: TIngredientData[] | [] | null
 }
 
 const initialState: TInitialState = {
@@ -15,8 +16,9 @@ const initialState: TInitialState = {
     top: null,
     bottom: null,
   },
-  ingredientsFetch: [],
+  ingredientsFetch: null,
   ingredientsOrder: [],
+  ingredientsOrderWithBuns: []
 }
 
 const ingredientSlice = createSlice({
@@ -27,13 +29,13 @@ const ingredientSlice = createSlice({
       const {_id, type} = action.payload?.item
 
       let addedIngredients: TIngredientData[] =
-        state.ingredientsFetch.filter((ingredient: TIngredientData) => {
+        state.ingredientsFetch?.data.filter((ingredient: TIngredientData) => {
           if(type !== "bun" && ingredient._id === _id) {
             return Object.assign(ingredient, {unique_id: uuidv4()})
           }
-        })
+        })!
 
-        state.ingredientsFetch.find((ingredient: TIngredientData) => {
+        state.ingredientsFetch?.data.find((ingredient: TIngredientData) => {
           if(type === "bun" && ingredient._id === _id) {
             state.buns = {
               top: {...ingredient, name: ingredient!?.name + " (верх)"},
@@ -46,6 +48,8 @@ const ingredientSlice = createSlice({
         ...state.ingredientsOrder,
         ...addedIngredients
       ]
+
+
     },
     removeIngredient(state, action: PayloadAction<number | string>) {
       let removedIngredient: TIngredientData[] =
@@ -66,7 +70,7 @@ const ingredientSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchIngredients.fulfilled, (state, action: PayloadAction<TIngredient>) => {
-        state.ingredientsFetch = action.payload?.data
+        state.ingredientsFetch = action.payload
       })
   }
 })

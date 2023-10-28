@@ -1,4 +1,4 @@
-import {TIngredientData} from "../../services/types/data.ts";
+import type {TIngredientData} from "../../services/types/data.ts";
 import {TBunsState} from "../../services/types";
 import {useMemo} from "react";
 

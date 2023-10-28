@@ -13,10 +13,9 @@
 }
 
 .ingredients {
-  width: 100%;
   &__container {
-    transition: .3s ease border;
-    border: .2rem dashed gray;
+    transition: .3s ease outline;
+    outline: .2rem dashed gray;
     height: 71rem;
 
     @include disableScrollbar;
@@ -24,14 +23,19 @@
 
   &__container_disable {
     height: 71rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
   }
 
   &__container_active {
-    transition: .3s ease border;
-    border: .2rem dashed #4C4CFF;
+    transition: .3s ease outline;
+    outline: .2rem dashed #4C4CFF;
     height: 71rem;
 
-    @include disableScrollbar;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
   }
 
   &__block__burger {
@@ -39,8 +43,8 @@
     flex-direction: column;
     row-gap: 1.6rem;
     height: 50rem;
-    padding: 1.6rem 0;
     overflow-y: scroll;
+    padding: 1.6rem 0 1.6rem 3rem;
 
     &::-webkit-scrollbar {
       width: .8rem;

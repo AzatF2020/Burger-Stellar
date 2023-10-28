@@ -3,6 +3,7 @@ import styles from "./style.module.scss";
 import CostIcon from "/icons/cost-icon.svg";
 import TrashIcon from "/icons/trash.svg";
 import LockIcon from "/icons/lock.svg";
+import DragIcon from "/icons/drag.svg";
 import {useDragDrop} from "../../helpers/customHooks/useDragDrop.ts";
 
 interface IOrderIngredient {
@@ -42,8 +43,11 @@ const OrderIngredient: FC<IOrderIngredient> = ({unique_id, image, cost, name, ty
         <img src={CostIcon} alt="icon" className={styles.ingredient__cost__icon}/>
       </div>
       <button className={styles.ingredient__remove} onClick={() => type === "middle" && fn!(unique_id!)}>
-        <img src={IngredientIcon[type]} alt="icon" className={styles.ingredient__icon}/>
+        <img src={IngredientIcon[type]} alt="icon" className={`${styles.ingredient__icon} ${styles.ingredient__icon__trash}`}/>
       </button>
+      {type === "middle" && <div className={styles.ingredient__drag}>
+        <img src={DragIcon} alt="icon" className={styles.ingredient__icon}/>
+      </div>}
     </div>
   );
 };

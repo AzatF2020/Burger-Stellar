@@ -1,5 +1,5 @@
 export type TIngredientData = {
-  unique_id?: string | number;
+  readonly unique_id?: string | number;
   readonly calories: number;
   readonly carbohydrates: number;
   readonly fat: number;
