@@ -7,7 +7,7 @@ import {useAppSelector} from "../../services/hooks.ts";
 import {countIngredients} from "../../helpers/helpers/countIngredients.ts";
 
 const BurgerConstructor = () => {
-  const {ingredientsFetch: data, ingredientsOrder} = useAppSelector((state) => state.ingredientSlice)
+  const {ingredientsFetch: data, ingredientsOrderWithBuns} = useAppSelector((state) => state.ingredientSlice)
 
   const [buns, setBuns] = useState<TIngredientData[] | []>([])
   const [main, setMain] = useState<TIngredientData[] | []>([])
@@ -37,7 +37,7 @@ const BurgerConstructor = () => {
             {buns?.map((ingredient: TIngredientData) => (
               <Ingredient
                 item={ingredient}
-                counter={countIngredients(ingredient, ingredientsOrder)}
+                counter={countIngredients(ingredient, ingredientsOrderWithBuns)}
                 key={ingredient._id}
                 name={ingredient?.name}
                 cost={ingredient?.price}
@@ -52,6 +52,7 @@ const BurgerConstructor = () => {
             {sauces?.map((ingredient: TIngredientData) => (
               <Ingredient
                 item={ingredient}
+                counter={countIngredients(ingredient, ingredientsOrderWithBuns)}
                 key={ingredient._id}
                 name={ingredient?.name}
                 cost={ingredient?.price}
@@ -66,6 +67,7 @@ const BurgerConstructor = () => {
             {main?.map((ingredient: TIngredientData) => (
               <Ingredient
                 item={ingredient}
+                counter={countIngredients(ingredient, ingredientsOrderWithBuns)}
                 key={ingredient._id}
                 name={ingredient?.name}
                 cost={ingredient?.price}

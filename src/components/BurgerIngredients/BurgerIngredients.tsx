@@ -68,7 +68,7 @@ const BurgerIngredients = () => {
           <h5 className={styles.ingredients__price}>{price}</h5>
           <img src={CostIcon} alt="cost icon" className={styles.ingredients__cost__image}/>
         </span>
-        <Button word={"Оформить заказ"} size={"large"} {...(!ingredientsOrder.length && {disabled: true})}/>
+        <Button word={"Оформить заказ"} size={"small"} disabled={!buns?.top}/>
       </div>
     </div>
   );

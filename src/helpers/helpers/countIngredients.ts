@@ -1,14 +1,17 @@
 import type {TIngredientData} from "../../services/types/data.ts";
 
-export const countIngredients = (ingredient: TIngredientData, data: TIngredientData[]) => {
-  let count = 0
-  console.log(data)
+export const countIngredients = (ingredient: TIngredientData, data: TIngredientData[]): number => {
+  let count: number = 0;
 
-  data?.map((item) => {
-    if(item._id === ingredient?._id) {
-      console.log(ingredient)
-    }
-  })
+  const getCount = (): number => {
+    data?.forEach((item: TIngredientData) => {
+      if(item?._id === ingredient?._id) {
+        count +=1;
+      }
+    })
 
-  return count
-}
+    return count;
+  };
+
+  return getCount();
+};

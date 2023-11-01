@@ -1,9 +1,8 @@
 import styles from "./style.module.scss"
 import {ButtonHTMLAttributes, FC} from "react";
 
-interface IButton {
+interface IButton extends ButtonHTMLAttributes<HTMLButtonElement>{
     word: string;
-    args?: ButtonHTMLAttributes<HTMLButtonElement>;
     readonly size?: "small" | "middle" | "large";
 }
 
@@ -13,9 +12,9 @@ const buttonClass = {
   "large": styles.button__large,
 }
 
-const Button: FC<IButton> = ({word, size = "middle", ...args}) => {
+const Button: FC<IButton> = ({word, size = "middle", type, disabled = false}) => {
   return (
-    <button className={buttonClass[size]} {...args}>{word}</button>
+    <button className={buttonClass[size]} type={type} disabled={disabled}>{word}</button>
   );
 };
 

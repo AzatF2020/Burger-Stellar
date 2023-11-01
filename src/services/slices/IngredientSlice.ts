@@ -8,7 +8,7 @@ type TInitialState = {
   buns: TBunsState;
   ingredientsFetch: TIngredient | null;
   ingredientsOrder: TIngredientData[] | [];
-  ingredientsOrderWithBuns: TIngredientData[] | [] | null
+  ingredientsOrderWithBuns: TIngredientData[] | [];
 }
 
 const initialState: TInitialState = {
@@ -37,10 +37,12 @@ const ingredientSlice = createSlice({
 
         state.ingredientsFetch?.data.find((ingredient: TIngredientData) => {
           if(type === "bun" && ingredient._id === _id) {
+
             state.buns = {
               top: {...ingredient, name: ingredient!?.name + " (верх)"},
               bottom: {...ingredient, name: ingredient!?.name + " (низ)"}
             }
+
           }
         })
 
@@ -49,16 +51,25 @@ const ingredientSlice = createSlice({
         ...addedIngredients
       ]
 
-
+      state.ingredientsOrderWithBuns = [
+        ...state.ingredientsOrder,
+        {...state.buns.top!},
+        {...state.buns.bottom!},
+      ]
     },
     removeIngredient(state, action: PayloadAction<number | string>) {
-      let removedIngredient: TIngredientData[] =
-        state.ingredientsOrder.filter((ingredient: TIngredientData) => {
+      const removeIngredientFromState = (array: TIngredientData[]) => {
+        return array?.filter((ingredient: TIngredientData) => {
           return ingredient?.unique_id !== action.payload
         })
+      }
 
       state.ingredientsOrder = [
-        ...removedIngredient
+        ...removeIngredientFromState(state.ingredientsOrder)
+      ]
+
+      state.ingredientsOrderWithBuns = [
+        ...removeIngredientFromState(state.ingredientsOrderWithBuns)
       ]
     },
     moveIngredient(state, action) {
