@@ -1,5 +1,11 @@
 import {Routes, Route, useLocation} from "react-router-dom";
-import {Home, Orders, HomeIngredientDetail, Register} from "../pages";
+import {
+  Home,
+  Orders,
+  HomeIngredientDetail,
+  Register,
+  Login
+} from "../pages";
 
 const Routing = () => {
   const location = useLocation()
@@ -14,7 +20,7 @@ const Routing = () => {
 
         {/* #NOTE: Authorization */}
         <Route path={"/register"} element={<Register/>}/>
-
+        <Route path={"/login"} element={<Login/>}/>
       </Routes>
 
       {state?.backgroundLocation && (<Routes>

@@ -1,8 +1,6 @@
-.register {
-  width: 100%;
-  height: calc(100vh - 12rem);
-
+.login {
   display: flex;
   align-items: center;
   justify-content: center;
+  min-height: calc(100vh - 12rem);
 }

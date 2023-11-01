@@ -13,13 +13,13 @@ const AppHeader = () => {
           <NavLink
             to={"/"}
             className={({isActive}) => isActive ? styles.header__link__active : styles.header__link}>
-            <img src={BurgerIcon} alt="" className={styles.header__icon}/>
+            <img src={BurgerIcon} alt="icon" className={styles.header__icon}/>
             Конструктор
           </NavLink>
           <NavLink
             to={"/orders"}
             className={({isActive}) => isActive ? styles.header__link__active : styles.header__link}>
-            <img src={TapeIcon} alt="" className={styles.header__icon}/>
+            <img src={TapeIcon} alt="icon" className={styles.header__icon}/>
             Лента заказов
           </NavLink>
         </nav>
@@ -29,7 +29,7 @@ const AppHeader = () => {
         <NavLink
           to={"/profile"}
           className={({isActive}) => `${isActive ? styles.header__link__active : styles.header__link} ${styles.header__profile}`}>
-          <img src={CabinetIcon} alt="" className={styles.header__icon}/>
+          <img src={CabinetIcon} alt="icon" className={styles.header__icon}/>
           Личный кабинет
         </NavLink>
       </div>

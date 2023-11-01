@@ -30,8 +30,9 @@
 
     display: flex;
     align-items: center;
+    flex-direction: column;
     margin-top: 8rem;
-    column-gap: .8rem;
+    row-gap: 1.6rem;
   }
 
   &__text {
@@ -48,5 +49,11 @@
     &:hover {
       opacity: .4;
     }
+  }
+
+  &__list {
+    display: flex;
+    align-items: center;
+    column-gap: .8rem;
   }
 }

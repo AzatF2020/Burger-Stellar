@@ -6,7 +6,7 @@ export const countIngredients = (ingredient: TIngredientData, data: TIngredientD
   const getCount = (): number => {
     data?.forEach((item: TIngredientData) => {
       if(item?._id === ingredient?._id) {
-        count +=1;
+        count += 1;
       }
     })
 

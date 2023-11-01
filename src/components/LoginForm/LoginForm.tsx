@@ -1,12 +1,12 @@
 import styles from "./style.module.scss"
-import {useForm} from "react-hook-form";
-import Input from "../../ui/Input/Input.tsx";
-import {useCallback} from "react";
-import Button from "../../ui/Button/Button.tsx";
+import { useCallback } from "react";
+import { useForm } from "react-hook-form";
 import {emailRegex} from "../../helpers/constants/constants.ts";
-import {NavLink} from "react-router-dom"
+import Input from "../../ui/Input/Input.tsx";
+import Button from "../../ui/Button/Button.tsx";
+import { NavLink } from "react-router-dom"
 
-const RegisterForm = () => {
+const LoginForm = () => {
   const {register, handleSubmit, formState: {errors, isValid}} = useForm({
     mode: "onChange"
   })
@@ -17,18 +17,8 @@ const RegisterForm = () => {
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-      <h2 className={styles.form__title}>Регистрация</h2>
+      <h2 className={styles.form__title}>Вход</h2>
       <div className={styles.form__inputs__container}>
-        <Input
-          register={register}
-          name={"name"}
-          errors={errors}
-          placeholder={"Имя"}
-          validation={{
-            required: {value: true, message: "Обязательное поле"},
-            minLength: {value: 3, message: "Минимальное кол-во символов 3"},
-          }}
-        />
         <Input
           register={register}
           name={"email"}
@@ -53,13 +43,19 @@ const RegisterForm = () => {
           }}
         />
       </div>
-      <Button type={"submit"} disabled={!isValid} word={"Зарегестрироваться"}/>
-      <div className={styles.form__bottom}>
-        <p className={styles.form__text}>Уже зарегистрированы?</p>
-        <NavLink to={"/login"} className={styles.form__link}>Войти</NavLink>
-      </div>
+      <Button type={"submit"} disabled={!isValid} word={"Войти"}/>
+      <ul className={styles.form__bottom}>
+        <li className={styles.form__list}>
+          <p className={styles.form__text}>Вы — новый пользователь?</p>
+          <NavLink to={"/register"} className={styles.form__link}>Зарегистрироваться</NavLink>
+        </li>
+        <li className={styles.form__list}>
+          <p className={styles.form__text}>Забыли пароль?</p>
+          <NavLink to={"/forgot-password"} className={styles.form__link}>Восстановить пароль</NavLink>
+        </li>
+      </ul>
     </form>
   );
 };
 
-export default RegisterForm;
+export default LoginForm;
