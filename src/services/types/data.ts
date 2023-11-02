@@ -18,3 +18,10 @@ export type TIngredient = {
   readonly data: TIngredientData[];
   readonly success: boolean;
 }
+
+export type TRegister = {
+  success: boolean;
+  user: {[keyof: string]: string},
+  accessToken: string;
+  refreshToken: string;
+}

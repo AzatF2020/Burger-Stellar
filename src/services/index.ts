@@ -1,8 +1,10 @@
 import { configureStore, combineReducers} from '@reduxjs/toolkit'
-import {ingredientSlice} from "./slices/IngredientSlice.ts"
+import { ingredientSlice } from "./slices/IngredientSlice.ts"
+import { authSlice } from "./slices/authSlice.ts"
 
 const rootReducer = combineReducers({
-    ingredientSlice: ingredientSlice.reducer
+    ingredientSlice: ingredientSlice.reducer,
+    authSlice: authSlice.reducer
 })
 
 export const store = configureStore({

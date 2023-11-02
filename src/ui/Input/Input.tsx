@@ -1,4 +1,4 @@
-import {FC, InputHTMLAttributes, memo, useCallback} from "react";
+import {FC, FormEvent, InputHTMLAttributes, memo, useCallback} from "react";
 import styles from "./style.module.scss"
 import { useState } from "react"
 import EyeIcon from "/icons/eye.svg"
@@ -19,11 +19,16 @@ const Input: FC<IInput> = ({register, errors, name, validation, placeholder, typ
     return type !== "password" ? "text" : ((type === "password" && hide) ? "text" : "password")
   }, [type, hide])
 
+  const hidePassword = useCallback((event: FormEvent<HTMLButtonElement>) => {
+    event.preventDefault()
+    setHide((prevVal: boolean) => !prevVal)
+  }, [setHide])
+
   return (
     <label className={styles.label}>
       <input
         name={name}
-        className={styles.input}
+        className={errors[name] ? styles.input_disabled : styles.input}
         placeholder={placeholder}
         type={typeAttr()}
         {...register(name, validation)}
@@ -32,7 +37,7 @@ const Input: FC<IInput> = ({register, errors, name, validation, placeholder, typ
       {type === "password" &&
         <button
           className={styles.input__hide__button}
-          onClick={() => setHide((prevVal: boolean) => !prevVal)}>
+          onClick={hidePassword}>
         <img src={EyeIcon} alt="eye" className={styles.input__hide__icon}/>
       </button>}
     </label>

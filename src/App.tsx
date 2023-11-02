@@ -3,14 +3,9 @@ import {fetchIngredients} from "./services/thunks/fetchIngredients.ts";
 import {useEffect} from "react";
 import {useAppDispatch} from "./services/hooks.ts";
 import Routing from "./routing/Routing.tsx";
+import {userThunk} from "./services/thunks/userThunk.ts";
 
 function App() {
-  const dispatch = useAppDispatch()
-
-  useEffect(() => {
-    dispatch(fetchIngredients())
-  }, [dispatch]);
-
   return (
     <>
       <AppHeader/>
