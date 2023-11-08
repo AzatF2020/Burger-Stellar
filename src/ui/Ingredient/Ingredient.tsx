@@ -1,7 +1,7 @@
 import {FC} from "react";
 import styles from "./styles.module.scss"
 import CostIcon from "/icons/cost-icon.svg"
-import {useCustomDrag} from "../../helpers/customHooks/useCustomDrag.ts";
+import {useCustomDrag} from "../../utils/helpers/customHooks/useCustomDrag.ts";
 import {TIngredientData} from "../../services/types/data.ts";
 import {Link, useLocation} from "react-router-dom";
 

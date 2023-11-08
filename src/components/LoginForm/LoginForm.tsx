@@ -1,19 +1,15 @@
 import styles from "./style.module.scss"
-import {useCallback, useEffect} from "react";
+import {useCallback} from "react";
 import { useForm } from "react-hook-form";
-import {emailRegex} from "../../helpers/constants/constants.ts";
+import {emailRegex} from "../../utils/helpers/constants/constants.ts";
 import Input from "../../ui/Input/Input.tsx";
 import Button from "../../ui/Button/Button.tsx";
-import {NavLink, useNavigate} from "react-router-dom"
+import {NavLink} from "react-router-dom"
 import {loginThunk} from "../../services/thunks/loginThunk.ts";
 import {useAppDispatch} from "../../services/hooks.ts";
-import {useSelector} from "react-redux";
-import {RootState} from "../../services";
 
 const LoginForm = () => {
-  const navigate = useNavigate()
   const dispatch = useAppDispatch()
-  const isAuth = useSelector((state: RootState) => state.authSlice.isAuth)
   const {register, handleSubmit, formState: {errors, isValid}} = useForm({
     mode: "onChange"
   })
@@ -21,12 +17,6 @@ const LoginForm = () => {
   const onSubmit = useCallback(({email, password}: {[keyof: string]: string}) => {
     dispatch(loginThunk({email, password}))
   }, [dispatch])
-
-  useEffect(() => {
-    if(isAuth) {
-      navigate("/")
-    }
-  }, [navigate, isAuth]);
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>

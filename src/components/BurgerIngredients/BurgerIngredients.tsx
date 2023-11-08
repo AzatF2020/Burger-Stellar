@@ -7,7 +7,7 @@ import CostIcon from "/icons/cost-icon.svg";
 import {addIngredient, removeIngredient} from "../../services/slices/IngredientSlice.ts";
 import {useAppDispatch, useAppSelector} from "../../services/hooks.ts";
 import type {TIngredientData} from "../../services/types/data.ts";
-import {useCalculateIngredients} from "../../helpers/customHooks/useCalculateIngredients.ts";
+import {useCalculateIngredients} from "../../utils/helpers/customHooks/useCalculateIngredients.ts";
 
 const BurgerIngredients = () => {
   const dispatch = useAppDispatch()
@@ -74,6 +74,6 @@ const BurgerIngredients = () => {
   );
 };
 
-export default BurgerIngredients
+export default BurgerIngredients;
 
 

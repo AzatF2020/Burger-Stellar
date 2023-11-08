@@ -1,8 +1,11 @@
+import {ProfileModule} from "../../modules";
+import {useEffect, useLayoutEffect} from "react";
+
 export const Profile = () => {
   return (
-    <div>
-      <h1>Profile page</h1>
-    </div>
+    <section>
+      <ProfileModule/>
+    </section>
   );
 };
 

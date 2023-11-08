@@ -1,7 +1,7 @@
 import styles from "./style.module.scss"
 import { useCallback } from "react";
 import { useForm } from "react-hook-form";
-import {emailRegex} from "../../helpers/constants/constants.ts";
+import {emailRegex} from "../../utils/helpers/constants/constants.ts";
 import Input from "../../ui/Input/Input.tsx";
 import Button from "../../ui/Button/Button.tsx";
 import { NavLink } from "react-router-dom"

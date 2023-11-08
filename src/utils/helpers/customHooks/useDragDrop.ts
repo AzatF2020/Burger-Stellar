@@ -1,6 +1,6 @@
-import {useAppDispatch} from "../../services/hooks.ts";
+import {useAppDispatch} from "../../../services/hooks.ts";
 import {useCallback, MutableRefObject} from "react";
-import {moveIngredient} from "../../services/slices/IngredientSlice.ts";
+import {moveIngredient} from "../../../services/slices/IngredientSlice.ts";
 import {useDrag, useDrop} from "react-dnd";
 
 export const useDragDrop = (ref: MutableRefObject<HTMLDivElement | null>, index: number, unique_id: string | number | undefined) => {

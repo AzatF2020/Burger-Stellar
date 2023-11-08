@@ -1,5 +1,5 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {url} from "../../helpers/constants/constants.ts";
+import {url} from "../../utils/helpers/constants/constants.ts";
 import {TIngredient} from "../types/data.ts";
 
 export const fetchIngredients = createAsyncThunk(

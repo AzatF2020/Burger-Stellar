@@ -3,6 +3,41 @@
   flex-direction: column;
   align-items: center;
   position: relative;
+
+  &__placeholder {
+    position: absolute;
+    display: block;
+    color: #8585AD;
+    left: 2.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.6rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.2;
+    font-family: var(--font-family);
+    z-index: 1;
+
+    transition: .4s ease all;
+  }
+
+  .input_disabled:focus ~ &__placeholder  {
+    transform: translateY(-2.75rem);
+    font-size: 1.4rem;
+  }
+  .input_disabled:not(:placeholder-shown) ~ &__placeholder  {
+    transform: translateY(-2.75rem);
+    font-size: 1.4rem;
+  }
+
+  .input:focus ~ &__placeholder  {
+    transform: translateY(-2.75rem);
+    font-size: 1.4rem;
+  }
+  .input:not(:placeholder-shown) ~ &__placeholder  {
+    transform: translateY(-2.75rem);
+    font-size: 1.4rem;
+  }
 }
 
 .input {
@@ -23,6 +58,10 @@
 
   transition: .2s ease outline;
 
+  &::placeholder {
+    color: transparent;
+  }
+
   &_disabled {
     width: 48rem;
     height: 6.4rem;
@@ -41,14 +80,16 @@
     transition: .2s ease outline;
 
     outline: .2rem solid red;
+
+    position: relative;
+
+    &::placeholder {
+      color: transparent;
+    }
   }
 
   &:focus {
     outline: .2rem solid #4c4cff;
-  }
-
-  &::placeholder {
-    color: #8585AD;
   }
 
   &__error__message {

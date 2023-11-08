@@ -1,5 +1,5 @@
-import type {TIngredientData} from "../../services/types/data.ts";
-import {TBunsState} from "../../services/types";
+import type {TIngredientData} from "../../../services/types/data.ts";
+import {TBunsState} from "../../../services/types";
 import {useMemo} from "react";
 
 export const useCalculateIngredients = (data: TIngredientData[], buns?: TBunsState): {price: number} => {

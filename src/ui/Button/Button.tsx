@@ -4,6 +4,7 @@ import {ButtonHTMLAttributes, FC} from "react";
 interface IButton extends ButtonHTMLAttributes<HTMLButtonElement>{
     word: string;
     readonly size?: "small" | "middle" | "large";
+    readonly fn?: (args: any) => any
 }
 
 const buttonClass = {
@@ -12,9 +13,9 @@ const buttonClass = {
   "large": styles.button__large,
 }
 
-const Button: FC<IButton> = ({word, size = "middle", type, disabled = false}) => {
+const Button: FC<IButton> = ({word, size = "middle", type, disabled = false, fn}) => {
   return (
-    <button className={buttonClass[size]} type={type} disabled={disabled}>{word}</button>
+    <button className={buttonClass[size]} type={type} disabled={disabled} onClick={fn}>{word}</button>
   );
 };
 

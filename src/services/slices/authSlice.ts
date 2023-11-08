@@ -1,11 +1,20 @@
 import {createSlice} from "@reduxjs/toolkit"
 import {registerThunk} from "../thunks/registerThunk.ts";
 import {loginThunk} from "../thunks/loginThunk.ts";
-import {userThunk} from "../thunks/userThunk.ts";
+import {profileThunk} from "../thunks/profileThunk.ts";
+import type {TUserData} from "../types/data.ts";
+import {profileEditThunk} from "../thunks/profileEditThunk.ts";
 
-const initialState = {
+export type TInitialState = {
+  isAuth: boolean | null;
+  userData: TUserData | null;
+  isLoading: boolean;
+}
+
+const initialState: TInitialState = {
   isAuth: null,
-  userData: {}
+  userData: null,
+  isLoading: true
 }
 
 const authSlice = createSlice({
@@ -20,7 +29,20 @@ const authSlice = createSlice({
       .addCase(loginThunk.fulfilled, (state, action) => {
         state.isAuth = action.payload?.success
       })
-      .addCase(userThunk.fulfilled, (state, action) => {
+      .addCase(profileThunk.pending, (state, action) => {
+        state.isLoading = true
+      })
+      .addCase(profileThunk.fulfilled, (state, action) => {
+        state.isAuth = action.payload?.success
+        state.userData = action.payload?.user
+        state.isLoading = false
+      })
+      .addCase(profileThunk.rejected, (state, action) => {
+        state.isAuth = action.payload?.success
+        state.userData = action.payload?.user
+        state.isLoading = true
+      })
+      .addCase(profileEditThunk.fulfilled, (state, action) => {
         state.isAuth = action.payload?.success
         state.userData = action.payload?.user
       })

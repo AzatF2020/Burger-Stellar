@@ -4,7 +4,7 @@ import CostIcon from "/icons/cost-icon.svg";
 import TrashIcon from "/icons/trash.svg";
 import LockIcon from "/icons/lock.svg";
 import DragIcon from "/icons/drag.svg";
-import {useDragDrop} from "../../helpers/customHooks/useDragDrop.ts";
+import {useDragDrop} from "../../utils/helpers/customHooks/useDragDrop.ts";
 
 interface IOrderIngredient {
   fn?: (unique_id: string | number) => void

@@ -9,9 +9,10 @@ interface IInput extends InputHTMLAttributes<HTMLInputElement>{
   name: string;
   validation: any;
   args?: any
+  value?: string
 }
 
-const Input: FC<IInput> = ({register, errors, name, validation, placeholder, type}) => {
+const Input: FC<IInput> = ({register, errors, name, validation, placeholder, type, value}) => {
   const [hide, setHide] = useState<boolean>(false)
 
   // #NOTE: Just attr for password if it's hidden
@@ -27,12 +28,14 @@ const Input: FC<IInput> = ({register, errors, name, validation, placeholder, typ
   return (
     <label className={styles.label}>
       <input
+        value={value}
         name={name}
         className={errors[name] ? styles.input_disabled : styles.input}
-        placeholder={placeholder}
         type={typeAttr()}
-        {...register(name, validation)}
+        {...register(name, validation, value)}
+        placeholder={placeholder}
       />
+      <span className={styles.label__placeholder}>{placeholder}</span>
       {errors[name] && <p className={styles.input__error__message}>{errors[name]?.message}</p>}
       {type === "password" &&
         <button

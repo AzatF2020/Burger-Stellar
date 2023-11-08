@@ -10,23 +10,27 @@ import {
   ResetPassword,
   Profile
 } from "../pages";
-import {useSelector} from "react-redux";
-import {RootState} from "../services";
-import {useAppDispatch} from "../services/hooks.ts";
 import {useEffect} from "react";
+import {profileThunk} from "../services/thunks/profileThunk.ts";
+import {useAppDispatch} from "../services/hooks.ts";
 import {fetchIngredients} from "../services/thunks/fetchIngredients.ts";
-import {userThunk} from "../services/thunks/userThunk.ts";
+import ProfileForm from "../components/ProfileForm/ProfileForm.tsx";
 
 const Routing = () => {
+  const dispatch = useAppDispatch()
   const location = useLocation()
-  const isAuth = useSelector((state: RootState) => state.authSlice.isAuth)
   let state = location.state && {backgroundLocation: Location}
 
-  const dispatch = useAppDispatch()
+  useEffect(() => {
+    dispatch(profileThunk())
+
+    return () => dispatch(profileThunk())
+  }, [dispatch]);
 
   useEffect(() => {
     dispatch(fetchIngredients())
-    dispatch(userThunk())
+
+    return () => dispatch(fetchIngredients())
   }, [dispatch]);
 
   return (
@@ -37,23 +41,24 @@ const Routing = () => {
         <Route path={"/orders"} element={<Orders/>}/>
 
         {/* #NOTE: Authorization */}
-        <Route path={"/register"} element={<Register/>}/>
-        <Route path={"/login"} element={
-          <ProtectedRoute isAuth={isAuth}>
-            <Login/>
-          </ProtectedRoute>
+        <Route path={"/register"} element={
+          <ProtectedRoute unAuth={true} element={<Register/>}/>
         }/>
-        <Route path={"/forgot-password"} element={<ForgotPassword/>}/>
+        <Route path={"/login"} element={
+          <ProtectedRoute unAuth={true} element={<Login/>}/>
+        }/>
+        <Route path={"/forgot-password"} element={
+          <ProtectedRoute unAuth={true} element={<ForgotPassword/>}/>
+        }/>
         <Route path={"/reset-password"} element={
-          <ProtectedRoute isAuth={isAuth}>
-            <ResetPassword/>
-          </ProtectedRoute>
+          <ProtectedRoute unAuth={true} element={<ResetPassword/>}/>
         }/>
         <Route path={"/profile"} element={
-          <ProtectedRoute isAuth={isAuth}>
-            <Profile/>
-          </ProtectedRoute>
-        }/>
+          <ProtectedRoute element={<Profile/>}/>
+        }>
+          <Route path={"/profile"} index={true} element={<ProfileForm/>}></Route>
+          <Route path={"/profile/orders"} element={<ProfileForm/>}></Route>
+        </Route>
       </Routes>
 
       {state?.backgroundLocation && (<Routes>

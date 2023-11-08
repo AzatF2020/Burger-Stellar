@@ -4,7 +4,7 @@ import Ingredient from "../../ui/Ingredient/Ingredient.tsx";
 import {useCallback, useEffect, useState, memo, useRef} from "react"
 import {TIngredientData} from "../../services/types/data.ts";
 import {useAppSelector} from "../../services/hooks.ts";
-import {countIngredients} from "../../helpers/helpers/countIngredients.ts";
+import {countIngredients} from "../../utils/helpers/helpers/countIngredients.ts";
 
 const BurgerConstructor = () => {
   const {ingredientsFetch: data, ingredientsOrderWithBuns} = useAppSelector((state) => state.ingredientSlice)

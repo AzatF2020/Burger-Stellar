@@ -20,8 +20,17 @@ export type TIngredient = {
 }
 
 export type TRegister = {
-  success: boolean;
-  user: {[keyof: string]: string},
-  accessToken: string;
-  refreshToken: string;
+  readonly success: boolean;
+  readonly user: {
+    readonly name: string;
+    readonly email: string
+  },
+  readonly accessToken: string;
+  readonly refreshToken: string;
+}
+
+export type TProfileType = Omit<TRegister, "accessToken" | "refreshToken">
+export type TUserData = {
+  name: string
+  email: string
 }

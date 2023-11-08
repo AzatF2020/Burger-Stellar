@@ -1,10 +1,10 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {registerEndpoint} from "../../helpers/constants/constants.ts";
+import {registerEndpoint} from "../../utils/helpers/constants/constants.ts";
 import cookie from "js-cookie";
 
 export const registerThunk = createAsyncThunk(
   "register/fetchAuthRegister",
-  async ({...args}: {[keyof: string]: string}) => {
+  async ({name, email, password}: {[keyof: string]: string}) => {
     try {
       const response = await fetch(registerEndpoint, {
         method: "POST",
@@ -13,7 +13,9 @@ export const registerThunk = createAsyncThunk(
           "Content-type": "application/json",
         },
         body: JSON.stringify({
-          ...args
+          name,
+          email,
+          password,
         })
       })
       if(response.ok && response.status === 200) {
@@ -25,7 +27,7 @@ export const registerThunk = createAsyncThunk(
           return responseData
         }
       } else {
-        throw new Error("Failed Registration")
+        throw Error("Failed Registration")
       }
     } catch (e) {
       if(e instanceof Error) throw new Error(e?.message)

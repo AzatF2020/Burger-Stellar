@@ -1,8 +1,10 @@
+import {OrdersModule} from "../../modules";
+
 export const Orders = () => {
   return (
-    <div>
-
-    </div>
+    <>
+      <OrdersModule/>
+    </>
   );
 };
 

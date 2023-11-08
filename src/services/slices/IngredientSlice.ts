@@ -11,7 +11,7 @@ type TInitialState = {
   ingredientsOrderWithBuns: TIngredientData[] | [];
 }
 
-const initialState: TInitialState = {
+export const initialState: TInitialState = {
   buns: {
     top: null,
     bottom: null,

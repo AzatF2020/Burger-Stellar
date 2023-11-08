@@ -1,10 +1,10 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {loginEndpoint} from "../../helpers/constants/constants.ts";
+import {loginEndpoint} from "../../utils/helpers/constants/constants.ts";
 import cookie from "js-cookie";
 
 export const loginThunk = createAsyncThunk(
   "login/fetchAuth",
-  async ({...args}: {[keyof: string]: string}) => {
+  async ({email, password}: {[keyof: string]: string}) => {
     const response = await fetch(loginEndpoint, {
       method: "POST",
       headers: {
@@ -12,7 +12,8 @@ export const loginThunk = createAsyncThunk(
         "Content-type": "application/json",
       },
       body: JSON.stringify({
-        ...args
+        email,
+        password
       })
     })
     const responseData = await response.json()

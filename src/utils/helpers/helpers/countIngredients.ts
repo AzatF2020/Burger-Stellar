@@ -1,4 +1,4 @@
-import type {TIngredientData} from "../../services/types/data.ts";
+import type {TIngredientData} from "../../../services/types/data.ts";
 
 export const countIngredients = (ingredient: TIngredientData, data: TIngredientData[]): number => {
   let count: number = 0;

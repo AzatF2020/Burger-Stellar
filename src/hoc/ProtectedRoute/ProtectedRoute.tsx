@@ -1,41 +1,24 @@
-import {FC, ReactNode} from "react";
-import {useLocation} from "react-router-dom";
-import {Navigate} from "react-router-dom";
+import {FC, ReactNode, useEffect} from "react";
+import {useLocation, useNavigate} from "react-router-dom";
+import {useSelector} from "react-redux";
+import {RootState} from "../../services";
+import Loading from "../../components/Loading/Loading.tsx";
 
 interface IProtectedRoute {
-  isAuth: boolean | null;
-  children: ReactNode;
+  element: ReactNode;
+  unAuth?: boolean | null;
 }
 
-const authPages = {
-  "/login": "/login",
-  "/register": "/register",
-  "/forgot-password": "forgot-password",
-  "/reset-password": "reset-password",
-}
+export const ProtectedRoute: FC<IProtectedRoute> = ({unAuth = false, element}) => {
+  const location = useLocation()
+  const navigate = useNavigate()
 
-export const ProtectedRoute: FC<IProtectedRoute> = ({isAuth, children}) => {
-  const {pathname} = useLocation()
+  const {isAuth, userData, isLoading} = useSelector((state: RootState) => state.authSlice)
 
-  if(!isAuth) {
-    return (
-      <>
-        <Navigate to={"/login"}/>
-        {children}
-      </>
-    )
-  }
+  useEffect(() => {
+    if (!unAuth && !isAuth) navigate("/login", {replace: true})
+    if(unAuth && isAuth) navigate(location.state?.path || "/profile", {replace: true})
+  }, [navigate, isAuth, userData]);
 
-  if(isAuth) {
-    if(authPages[pathname as keyof typeof authPages]) {
-      return (
-        <>
-          <Navigate to={"/profile"}/>
-          {children}
-        </>
-      )
-    }
-  }
-
-  return (<>{children}</>);
+  return element
 };
