@@ -1,6 +1,7 @@
 import {FC, ReactNode, useEffect, useRef} from 'react';
 import styles from "./style.module.scss"
 import {useNavigate} from "react-router-dom";
+import { createPortal } from 'react-dom';
 
 interface IModal {
   children?: ReactNode;
@@ -24,13 +25,15 @@ export const Modal: FC<IModal> = ({children}) => {
     }
   }, [innerRef.current]);
 
-  return (
-    <div className={styles.modal}>
-      <div className={styles.modal__inner} ref={innerRef}>
-        {children}
-      </div>
-    </div>
-  );
+
+    return createPortal(
+      <div className={styles.modal}>
+        <div className={styles.modal__inner} ref={innerRef}>
+          {children}
+        </div>
+      </div>,
+    document.getElementById("modal")!
+    )
 };
 
 

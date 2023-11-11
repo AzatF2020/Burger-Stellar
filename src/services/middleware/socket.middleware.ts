@@ -3,7 +3,6 @@ import { Middleware, MiddlewareAPI, AnyAction } from 'redux'
 import cookie from "js-cookie";
 import {getAccessToken} from "../../utils/helpers/helpers/getAccessToken.ts";
 
-
 export enum SocketType {
   feed = 'feed',
   my = 'my'

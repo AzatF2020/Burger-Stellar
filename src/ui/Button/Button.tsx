@@ -3,6 +3,7 @@ import {ButtonHTMLAttributes, FC} from "react";
 
 interface IButton extends ButtonHTMLAttributes<HTMLButtonElement>{
     word: string;
+    readonly variant?: "contained" | "text"
     readonly size?: "small" | "middle" | "large";
     readonly fn?: (args: any) => any
 }
@@ -13,9 +14,12 @@ const buttonClass = {
   "large": styles.button__large,
 }
 
-const Button: FC<IButton> = ({word, size = "middle", type, disabled = false, fn}) => {
+const Button: FC<IButton> = ({word, size = "middle", variant="contained", type, disabled = false, fn}) => {
   return (
-    <button className={buttonClass[size]} type={type} disabled={disabled} onClick={fn}>{word}</button>
+    <button className={
+      variant === "text" ?
+      `${buttonClass[size]} ${styles.button__text}`: buttonClass[size]
+    } type={type} disabled={disabled} onClick={fn}>{word}</button>
   );
 };
 

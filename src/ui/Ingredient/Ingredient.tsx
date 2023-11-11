@@ -1,4 +1,4 @@
-import {FC} from "react";
+import {FC, memo} from "react";
 import styles from "./styles.module.scss"
 import CostIcon from "/icons/cost-icon.svg"
 import {useCustomDrag} from "../../utils/helpers/customHooks/useCustomDrag.ts";
@@ -20,7 +20,7 @@ const Ingredient: FC<IIngredient> = ({item, counter, image, cost, name}) => {
 
   return (
     <Link
-      state={{ backgroundLocation: location }}
+      state={{ background: location }}
       key={item?._id}
       to={`${item?._id}`}
       className={styles.ingredient}
@@ -40,6 +40,6 @@ const Ingredient: FC<IIngredient> = ({item, counter, image, cost, name}) => {
   );
 };
 
-export default Ingredient;
+export default memo(Ingredient);
 
 

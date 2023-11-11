@@ -1,4 +1,4 @@
-import {FC} from "react"
+import {FC, memo} from "react"
 import styles from "./style.module.scss"
 import {TIngredientData} from "../../services/types/data.ts";
 import CostIcon from "/icons/cost-icon.svg";
@@ -17,7 +17,7 @@ const OrderCard: FC<IOrderCard> = ({id, createdAt, name, ingredients, price}) =>
     <div className={styles?.card}>
       <ul className={styles.card__container}>
         <li className={styles.card__upper}>
-          <h5 className={styles.card__id}>{id}</h5>
+          <h5 className={styles.card__id}>#{id}</h5>
           <time className={styles.card__createdAt}>{createdAt}</time>
         </li>
         <li className={styles.card__middle}>
@@ -25,10 +25,10 @@ const OrderCard: FC<IOrderCard> = ({id, createdAt, name, ingredients, price}) =>
         </li>
         <li className={styles.card__bottom}>
           <div className={styles.card__ingredients__images}>
-            {ingredients!?.slice(0, 5)?.map((ingredient, index) => (
+            {ingredients!?.slice(0, 4)?.map((ingredient, index) => (
               <span style={{zIndex: `${6 - index}`, transform: `translateX(-${index * 2}rem)`}} key={index} className={styles.card__image__wrapper}>
                 <img
-                  src={ingredient.image}
+                  src={ingredient?.image}
                   alt="icon" className={styles.card__image}
                   />
               </span>
@@ -36,9 +36,9 @@ const OrderCard: FC<IOrderCard> = ({id, createdAt, name, ingredients, price}) =>
             {countOrderIngredients(ingredients) !== 0 &&
               (<span
                 className={styles.card__image__wrapper}
-                style={{zIndex: 0, transform: `translateX(-${11}rem)`}}>
+                style={{zIndex: 0, transform: `translateX(-${7.5}rem)`}}>
                 <img
-                  src={ingredients![6].image}
+                  src={ingredients![5]?.image}
                   alt="icon" className={styles.card__image}
                   style={{filter: "brightness(50%)"}}
                 />
@@ -56,4 +56,4 @@ const OrderCard: FC<IOrderCard> = ({id, createdAt, name, ingredients, price}) =>
   );
 };
 
-export default OrderCard;
+export default memo(OrderCard);

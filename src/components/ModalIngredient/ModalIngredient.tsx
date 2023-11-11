@@ -2,14 +2,15 @@ import styles from "./style.module.scss"
 import {Link, useParams} from "react-router-dom";
 import {useAppSelector} from "../../services/hooks.ts";
 import CloseIcon from "/icons/close-icon.svg"
+import {useMemo} from "react";
 
 const ModalIngredient = () => {
   const {id} = useParams()
+  const ingredients = useAppSelector((state) => state.ingredientSlice.ingredientsFetch?.data)
 
-  const ingredient = useAppSelector((state) =>
-    state.ingredientSlice.ingredientsFetch?.data.find((ingredient) =>
-      ingredient._id === id)
-  )
+  const ingredient = useMemo(() => {
+    return ingredients!.find((ingredient) => ingredient._id === id)
+  }, [ingredients, id])
 
   return (
     <div className={styles.ingredient}>

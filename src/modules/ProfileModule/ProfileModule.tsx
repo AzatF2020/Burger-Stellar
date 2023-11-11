@@ -1,11 +1,10 @@
 import styles from "./style.module.scss"
 import {useEffect} from "react";
 import {profileThunk} from "../../services/thunks/profileThunk.ts";
-import {useAppDispatch, useAppSelector} from "../../services/hooks.ts";
+import {useAppDispatch} from "../../services/hooks.ts";
 import NavBar from "../../components/NavBar/NavBar.tsx";
 import {Outlet} from "react-router-dom";
 import {v4 as uuid} from "uuid"
-import {RootState} from "../../services";
 
 const navigation = [
   {
@@ -25,7 +24,7 @@ export const ProfileModule = () => {
 
   useEffect(() => {
     dispatch(profileThunk())
-  }, []);
+  }, [dispatch, profileThunk]);
 
   return (
     <div className={styles.profile}>
@@ -33,7 +32,7 @@ export const ProfileModule = () => {
         <div className={styles.profile__navbar}>
           <NavBar navigation={navigation}/>
         </div>
-        <div className={styles.profile__form}>
+        <div className={styles.profile__content}>
           <Outlet/>
         </div>
       </div>

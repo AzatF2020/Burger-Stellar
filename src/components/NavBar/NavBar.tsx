@@ -1,6 +1,6 @@
-import {FC, useCallback} from "react";
+import {FC, memo, useCallback} from "react";
 import styles from "./style.module.scss"
-import {Navigate, NavLink, useLocation, useNavigate} from "react-router-dom"
+import {NavLink, useNavigate} from "react-router-dom"
 import cookie from "js-cookie";
 
 interface INavBar {
@@ -47,3 +47,4 @@ const NavBar: FC<INavBar> = ({navigation}) => {
 };
 
 export default NavBar;
+

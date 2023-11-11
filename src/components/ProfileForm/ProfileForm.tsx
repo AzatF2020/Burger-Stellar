@@ -1,5 +1,5 @@
 import styles from "./style.module.scss"
-import {useCallback, useEffect, useState} from "react";
+import {FormEvent, useCallback, useEffect, useState} from "react";
 import { useForm } from "react-hook-form";
 import {emailRegex} from "../../utils/helpers/constants/constants.ts";
 import Input from "../../ui/Input/Input.tsx";
@@ -13,7 +13,7 @@ const ProfileForm = () => {
   const dispatch = useAppDispatch()
   const [profileData, setProfileData] = useState<null | TUserData>(null)
   const { userData } = useAppSelector((state: RootState) => state.authSlice)
-  const { register, handleSubmit, formState: {errors, isValid}, reset } = useForm({
+  const { register, handleSubmit, formState: {errors}, reset } = useForm({
     mode: "onChange",
     defaultValues: {
       name: "",
@@ -21,13 +21,14 @@ const ProfileForm = () => {
     }
   })
 
-  const cancelInputValues = () => {
+  const cancelInputValues = useCallback((event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
     const defaultValues = {
       name: profileData?.name,
       email: profileData?.email,
     }
     reset(defaultValues)
-  }
+  }, [profileData?.name, profileData?.email, reset])
 
   useEffect(() => {
     setProfileData(userData)
@@ -43,7 +44,7 @@ const ProfileForm = () => {
   }, [dispatch])
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+    <form className={styles.form} onSubmit={handleSubmit(onSubmit)} >
       <div className={styles.form__inputs__container}>
         <Input
           register={register}
@@ -79,8 +80,8 @@ const ProfileForm = () => {
         />
       </div>
       <div className={styles.form__buttons}>
-        <Button type={"submit"} word={"Сохранить"}/>
-        <Button word={"Отмена"} fn={cancelInputValues}/>
+        <Button word={"Отмена"} variant={"text"} size={"small"} fn={cancelInputValues}/>
+        <Button word={"Сохранить"} size={"small"} type={"submit"}/>
       </div>
     </form>
   );

@@ -1,4 +1,4 @@
-import {FC, useRef} from "react";
+import {FC, memo, useRef} from "react";
 import styles from "./style.module.scss";
 import CostIcon from "/icons/cost-icon.svg";
 import TrashIcon from "/icons/trash.svg";
@@ -52,4 +52,4 @@ const OrderIngredient: FC<IOrderIngredient> = ({unique_id, image, cost, name, ty
   );
 };
 
-export default OrderIngredient;
+export default memo(OrderIngredient);

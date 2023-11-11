@@ -2,7 +2,7 @@ import styles from "./style.module.scss"
 import OrderIngredient from "../../ui/OrderIngredient/OrderIngredient.tsx";
 import Button from "../../ui/Button/Button.tsx";
 import {useDrop} from "react-dnd";
-import {useCallback} from "react";
+import {memo, useCallback, useMemo} from "react";
 import CostIcon from "/icons/cost-icon.svg";
 import {addIngredient, removeIngredient} from "../../services/slices/IngredientSlice.ts";
 import {useAppDispatch, useAppSelector} from "../../services/hooks.ts";
@@ -28,15 +28,15 @@ const BurgerIngredients = () => {
   }, [dispatch])
 
   // #NOTE: Just for styling. You can skip function.
-  const setContainerClassOnDrop = () => {
+  const setContainerClassOnDrop = useMemo(() => {
     return isOver ?  styles.ingredients__container_active : (!ingredientsOrder.length && (!buns.top || !buns.bottom)) ?
       (isOver ? styles.ingredients__container_active : styles.ingredients__container)
       : styles.ingredients__container_disable
-  }
+  }, [isOver, ingredientsOrder.length, buns.top, buns.bottom])
 
   return (
     <div className={styles.ingredients}>
-      <div ref={drop} className={setContainerClassOnDrop()}>
+      <div ref={drop} className={setContainerClassOnDrop}>
         {buns.top &&
           <OrderIngredient
             cost={buns.top?.price}
@@ -68,12 +68,16 @@ const BurgerIngredients = () => {
           <h5 className={styles.ingredients__price}>{price}</h5>
           <img src={CostIcon} alt="cost icon" className={styles.ingredients__cost__image}/>
         </span>
-        <Button word={"Оформить заказ"} size={"small"} disabled={!buns?.top}/>
+        <Button
+          word={"Оформить заказ"}
+          size={"middle"}
+          disabled={!buns?.top}
+        />
       </div>
     </div>
   );
 };
 
-export default BurgerIngredients;
+export default memo(BurgerIngredients);
 
 

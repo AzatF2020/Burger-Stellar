@@ -8,9 +8,6 @@
 }
 
 .button__large {
-}
-
-.button__middle {
   @include buttonFont();
   width: 25.3rem;
   height: 5.6rem;
@@ -34,7 +31,7 @@
   }
 }
 
-.button__small {
+.button__middle {
   @include buttonFont();
   width: 21.5rem;
   height: 6.4rem;
@@ -55,5 +52,42 @@
     cursor: default;
     pointer-events: none;
     box-shadow: none;
+  }
+}
+
+.button__small {
+  @include buttonFont();
+  width: 16.7rem;
+  height: 5.6rem;
+  border-radius: 6.4rem;
+  box-shadow: 0px 4px 32px 0px rgba(51, 51, 255, 0.2), 0px 0px 8px 8px rgba(51, 51, 255, 0), 0px 0px 16px 8px rgba(51, 51, 255, 0);
+  border: none;
+  background: linear-gradient(63deg, #801AB2 0%, #4C4CFF 100%);
+
+  transition: .6s ease box-shadow;
+
+  &:hover {
+    box-shadow: 0px 4px 32px 0px rgba(51, 51, 255, 0.1), 0px 0px 8px 8px rgba(51, 51, 255, 0.2), 0px 0px 16px 8px rgba(51, 51, 255, 0.2);
+  }
+
+  &:disabled,
+  &[disabled] {
+    background: gray;
+    cursor: default;
+    pointer-events: none;
+    box-shadow: none;
+  }
+}
+
+.button__text {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  color: #4C4CFF;
+  transition: .4s ease opacity;
+
+  &:hover {
+    box-shadow: none;
+    opacity: .4;
   }
 }

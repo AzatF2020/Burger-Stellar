@@ -27,7 +27,7 @@ const AppHeader = () => {
             Конструктор
           </NavLink>
           <NavLink
-            to={"/orders"}
+            to={"/feed"}
             className={({isActive}) => isActive ? styles.header__link__active : styles.header__link}>
             <img src={TapeIcon} alt="icon" className={styles.header__icon}/>
             Лента заказов

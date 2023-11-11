@@ -8,6 +8,7 @@
     background-color: #1C1C21;
     border-radius: 4rem;
     padding: 2.4rem;
+    height: 24.5rem;
   }
 
   &__upper {
@@ -33,7 +34,7 @@
   }
 
   &__middle {
-
+    overflow: hidden;
   }
 
   &__name {
@@ -42,6 +43,10 @@
     font-style: normal;
     font-weight: 700;
     line-height: 1.2;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 100%;
   }
 
   &__bottom {
@@ -60,15 +65,15 @@
     padding: 2.5rem;
     border-radius: 50%;
     background-color: #000;
-    width: 5rem;
-    height: 5rem;
+    width: 1.5rem;
+    height: 1.5rem;
     border: .4rem solid #801AB2;
     position: relative;
   }
 
   &__image {
     width: auto;
-    height: 150%;
+    height: 350%;
     object-fit: cover;
   }
 
